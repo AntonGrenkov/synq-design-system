@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SynQ Design System — Living Style Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Radio+Canada:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   LEVEL 1: PRIMITIVE TOKENS — raw values
+   ═══════════════════════════════════════════════ */
+:root {
+  /* --- Colors: Blue palette --- */
+  --blue-50: #EFF6FF;
+  --blue-100: #DBEAFE;
+  --blue-200: #BFDBFE;
+  --blue-300: #93C5FD;
+  --blue-400: #60A5FA;
+  --blue-500: #3B82F6;
+  --blue-600: #2563EB;
+  --blue-700: #1D4ED8;
+  --blue-800: #1E40AF;
+  --blue-900: #1E3A8A;
+
+  /* --- Colors: Indigo palette --- */
+  --indigo-50: #EEF2FF;
+  --indigo-100: #E0E7FF;
+  --indigo-200: #C7D2FE;
+  --indigo-300: #A5B4FC;
+  --indigo-400: #818CF8;
+  --indigo-500: #6366F1;
+  --indigo-600: #4F46E5;
+  --indigo-700: #4338CA;
+  --indigo-800: #3730A3;
+  --indigo-900: #312E81;
+
+  /* --- Colors: Gray palette --- */
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+
+  /* --- Colors: Status --- */
+  --green-500: #10B981;
+  --green-600: #059669;
+  --green-50: #ECFDF5;
+  --red-500: #EF4444;
+  --red-600: #DC2626;
+  --red-50: #FEF2F2;
+  --yellow-500: #F59E0B;
+  --yellow-600: #D97706;
+  --yellow-50: #FFFBEB;
+
+  /* --- Spacing --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* --- Radius --- */
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-full: 9999px;
+
+  /* --- Font sizes --- */
+  --font-2xs: 10px;
+  --font-xs: 12px;
+  --font-sm: 13px;
+  --font-base: 14px;
+  --font-md: 16px;
+  --font-lg: 18px;
+  --font-xl: 24px;
+  --font-2xl: 32px;
+  --font-3xl: 40px;
+
+  /* --- Duration --- */
+  --dur-fast: 150ms;
+  --dur-normal: 200ms;
+  --dur-slow: 300ms;
+}
+
+/* ═══════════════════════════════════════════════
+   LEVEL 2: SEMANTIC TOKENS — purpose/decision
+   ═══════════════════════════════════════════════ */
+:root {
+  /* --- Brand decision: ❓ blue or indigo --- */
+  --color-primary-50: var(--blue-50);
+  --color-primary-100: var(--blue-100);
+  --color-primary-200: var(--blue-200);
+  --color-primary-300: var(--blue-300);
+  --color-primary-400: var(--blue-400);
+  --color-primary-500: var(--blue-500);
+  --color-primary-600: var(--blue-600);
+  --color-primary-700: var(--blue-700);
+  --color-primary-rgb: 59, 130, 246;
+
+  /* --- Neutral --- */
+  --color-bg: #FFFFFF;
+  --color-bg-subtle: var(--gray-50);
+  --color-bg-muted: var(--gray-100);
+  --color-text: var(--gray-900);
+  --color-text-secondary: var(--gray-500);
+  --color-text-muted: var(--gray-400);
+  --color-border: var(--gray-200);
+  --color-border-strong: var(--gray-300);
+  --color-divider: var(--gray-200);
+
+  /* --- Status --- */
+  --color-success: var(--green-500);
+  --color-success-bg: var(--green-50);
+  --color-error: var(--red-500);
+  --color-error-bg: var(--red-50);
+  --color-warning: var(--yellow-500);
+  --color-warning-bg: var(--yellow-50);
+  --color-info: var(--blue-500);
+  --color-info-bg: var(--blue-50);
+
+  /* --- Layout --- */
+  --radius-sm: var(--radius-4);
+  --radius-md: var(--radius-8);
+  --radius-lg: var(--radius-12);
+  --radius-xl: var(--radius-16);
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.1), 0 6px 10px rgba(0,0,0,0.08);
+  --shadow-focus: 0 0 0 3px rgba(var(--color-primary-rgb), 0.3);
+
+  --transition-fast: var(--dur-fast) ease;
+  --transition-normal: var(--dur-normal) ease;
+  --transition-slow: var(--dur-slow) ease;
+
+  /* --- Overlays --- */
+  --overlay-subtle: rgba(0,0,0,0.05);
+  --overlay-light: rgba(0,0,0,0.1);
+  --overlay-medium: rgba(0,0,0,0.25);
+  --overlay-backdrop: rgba(0,0,0,0.5);
+  --overlay-heavy: rgba(0,0,0,0.9);
+
+  /* --- Z-index scale --- */
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+
+  /* --- Typography --- */
+  --font-ui: 'Raleway', sans-serif;
+  --font-content: 'Inter', sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', monospace;
+  --font-numbers: 'Radio Canada', sans-serif;
+}
+
+/* ═══════════════════════════════════════════════
+   LEVEL 3: COMPONENT TOKENS (examples)
+   ═══════════════════════════════════════════════ */
+:root {
+  --button-bg: var(--color-primary-500);
+  --button-bg-hover: var(--color-primary-600);
+  --button-text: #FFFFFF;
+  --button-radius: var(--radius-md);
+  --button-transition: all var(--transition-normal);
+
+  --input-bg: #FFFFFF;
+  --input-border: var(--color-border);
+  --input-border-focus: var(--color-primary-500);
+  --input-radius: var(--radius-md);
+  --input-placeholder: var(--color-text-muted);
+
+  --card-bg: #FFFFFF;
+  --card-border: var(--color-border);
+  --card-radius: var(--radius-lg);
+  --card-shadow: var(--shadow-sm);
+
+  --badge-radius: var(--radius-full);
+
+  --sidebar-bg: #FFFFFF;
+  --sidebar-border: var(--color-border);
+  --sidebar-width: 108px;
+}
+
+/* ═══════════════════════════════════════════════
+   GLOBAL KEYFRAMES (единые для проекта)
+   ═══════════════════════════════════════════════ */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+/* ═══════════════════════════════════════════════
+   UTILITY CLASSES
+   ═══════════════════════════════════════════════ */
+.scrollbar-hidden { scrollbar-width: none; -ms-overflow-style: none; }
+.scrollbar-hidden::-webkit-scrollbar { display: none; }
+.scrollbar-thin { scrollbar-width: thin; scrollbar-color: var(--gray-300) transparent; }
+.scrollbar-thin::-webkit-scrollbar { width: 6px; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: var(--radius-full); }
+
+/* ═══════════════════════════════════════════════
+   PAGE STYLES
+   ═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-content);
+  font-size: var(--font-base);
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg-subtle);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Navigation --- */
+.ds-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100vh;
+  background: var(--color-bg);
+  border-right: 1px solid var(--color-border);
+  padding: var(--space-6) var(--space-4);
+  overflow-y: auto;
+  z-index: var(--z-sticky);
+}
+
+.ds-nav-logo {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--font-xl);
+  background: linear-gradient(135deg, #0011FF, #C538CF, #ED5F9F, #FF8000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-1);
+}
+
+.ds-nav-sub {
+  font-size: var(--font-xs);
+  color: var(--color-text-muted);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-6);
+}
+
+.ds-nav a {
+  display: block;
+  padding: 6px var(--space-3);
+  margin: 2px 0;
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.ds-nav a:hover {
+  color: var(--color-text);
+  background: var(--color-bg-muted);
+}
+
+.ds-nav a.active {
+  color: var(--color-primary-600);
+  background: var(--color-primary-50);
+  font-weight: 600;
+}
+
+.ds-nav-section {
+  font-size: var(--font-2xs);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-2);
+  padding-left: var(--space-3);
+}
+
+/* --- Main Content --- */
+.ds-main {
+  margin-left: 240px;
+  padding: var(--space-8) var(--space-10);
+  max-width: 1100px;
+}
+
+/* --- Section --- */
+.ds-section {
+  margin-bottom: var(--space-12);
+  animation: slideUp 0.4s ease both;
+}
+
+.ds-section-title {
+  font-family: var(--font-ui);
+  font-size: var(--font-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.02em;
+}
+
+.ds-section-desc {
+  color: var(--color-text-secondary);
+  font-size: var(--font-md);
+  margin-bottom: var(--space-6);
+  max-width: 680px;
+  line-height: 1.6;
+}
+
+.ds-subsection {
+  margin-bottom: var(--space-8);
+}
+
+.ds-subsection-title {
+  font-family: var(--font-ui);
+  font-size: var(--font-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+}
+
+.ds-label {
+  font-size: var(--font-2xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-2);
+}
+
+/* --- Hero --- */
+.ds-hero {
+  background: linear-gradient(135deg, #0011FF 0%, #C538CF 35%, #ED5F9F 65%, #FF8000 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--space-12) var(--space-10);
+  margin-bottom: var(--space-10);
+  position: relative;
+  overflow: hidden;
+}
+
+.ds-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 60px,
+    rgba(255,255,255,0.03) 60px,
+    rgba(255,255,255,0.03) 61px
+  );
+}
+
+.ds-hero-title {
+  font-family: var(--font-ui);
+  font-size: var(--font-3xl);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: var(--space-3);
+  position: relative;
+  letter-spacing: -0.03em;
+}
+
+.ds-hero-desc {
+  font-size: var(--font-lg);
+  color: rgba(255,255,255,0.85);
+  max-width: 560px;
+  line-height: 1.6;
+  position: relative;
+}
+
+.ds-hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: var(--font-xs);
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-4);
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* --- Color swatches --- */
+.ds-colors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: var(--space-3);
+}
+
+.ds-swatch {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  transition: transform var(--transition-fast);
+  cursor: pointer;
+}
+
+.ds-swatch:hover { transform: translateY(-2px); }
+
+.ds-swatch-color {
+  height: 64px;
+  position: relative;
+}
+
+.ds-swatch-info {
+  padding: var(--space-2);
+}
+
+.ds-swatch-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text);
+  font-family: var(--font-ui);
+}
+
+.ds-swatch-hex {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+/* --- Semantic color row --- */
+.ds-semantic-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--space-2);
+  background: var(--color-bg);
+  transition: background var(--transition-fast);
+}
+
+.ds-semantic-row:hover { background: var(--color-bg-subtle); }
+
+.ds-semantic-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.ds-semantic-name {
+  font-family: var(--font-mono);
+  font-size: var(--font-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  min-width: 200px;
+}
+
+.ds-semantic-value {
+  font-family: var(--font-mono);
+  font-size: var(--font-xs);
+  color: var(--color-text-muted);
+  min-width: 180px;
+}
+
+.ds-semantic-usage {
+  font-size: var(--font-xs);
+  color: var(--color-text-secondary);
+}
+
+/* --- Token table --- */
+.ds-token-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-sm);
+}
+
+.ds-token-table th {
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-2xs);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.ds-token-table td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.ds-token-table tr:hover td { background: var(--color-bg-subtle); }
+
+.ds-token-table .token-name {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--color-primary-600);
+  font-size: var(--font-xs);
+}
+
+.ds-token-table .token-value {
+  font-family: var(--font-mono);
+  font-size: var(--font-xs);
+  color: var(--color-text-secondary);
+}
+
+.ds-token-table .token-preview { width: 120px; }
+
+/* --- Typography samples --- */
+.ds-type-sample {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-6);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ds-type-meta {
+  min-width: 140px;
+  flex-shrink: 0;
+}
+
+.ds-type-meta-name {
+  font-family: var(--font-mono);
+  font-size: var(--font-xs);
+  color: var(--color-primary-600);
+  font-weight: 600;
+}
+
+.ds-type-meta-spec {
+  font-size: var(--font-2xs);
+  color: var(--color-text-muted);
+}
+
+/* --- Component preview --- */
+.ds-preview {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.ds-preview-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+
+.ds-preview-row:last-child { margin-bottom: 0; }
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 8px 16px;
+  font-family: var(--font-ui);
+  font-size: var(--font-base);
+  font-weight: 600;
+  border-radius: var(--button-radius);
+  border: none;
+  cursor: pointer;
+  transition: var(--button-transition);
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.btn-primary {
+  background: var(--button-bg);
+  color: var(--button-text);
+}
+.btn-primary:hover { background: var(--button-bg-hover); }
+
+.btn-secondary {
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.btn-secondary:hover { background: var(--color-bg-muted); }
+
+.btn-danger {
+  background: var(--color-error);
+  color: #fff;
+}
+.btn-danger:hover { background: var(--red-600); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+.btn-ghost:hover { background: var(--color-bg-muted); color: var(--color-text); }
+
+.btn-sm { padding: 4px 10px; font-size: var(--font-sm); }
+.btn-lg { padding: 12px 24px; font-size: var(--font-md); }
+
+.btn:disabled, .btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* --- Inputs --- */
+.input {
+  width: 100%;
+  max-width: 320px;
+  padding: 8px 12px;
+  font-family: var(--font-content);
+  font-size: var(--font-base);
+  color: var(--color-text);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+  outline: none;
+}
+
+.input::placeholder { color: var(--input-placeholder); }
+.input:focus {
+  border-color: var(--input-border-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+.input-error {
+  border-color: var(--color-error);
+}
+.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+/* --- Badges --- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: var(--font-2xs);
+  font-weight: 600;
+  font-family: var(--font-ui);
+  border-radius: var(--badge-radius);
+  line-height: 1.6;
+}
+
+.badge-primary { background: var(--color-primary-50); color: var(--color-primary-700); }
+.badge-success { background: var(--color-success-bg); color: var(--green-600); }
+.badge-error { background: var(--color-error-bg); color: var(--red-600); }
+.badge-warning { background: var(--color-warning-bg); color: var(--yellow-600); }
+.badge-neutral { background: var(--color-bg-muted); color: var(--color-text-secondary); }
+
+/* --- Cards --- */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: var(--space-5);
+}
+
+/* --- Toggle --- */
+.toggle-track {
+  width: 40px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: var(--gray-300);
+  position: relative;
+  cursor: pointer;
+  transition: background var(--transition-normal);
+}
+
+.toggle-track.active { background: var(--color-primary-500); }
+
+.toggle-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform var(--transition-normal);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.toggle-track.active .toggle-thumb { transform: translateX(18px); }
+
+/* --- Spinner --- */
+.spinner {
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-primary-500);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.spinner-sm { width: 16px; height: 16px; }
+.spinner-md { width: 24px; height: 24px; }
+.spinner-lg { width: 32px; height: 32px; border-width: 3px; }
+
+/* --- Visual helpers --- */
+.ds-radius-sample {
+  width: 64px;
+  height: 48px;
+  background: var(--color-primary-100);
+  border: 2px solid var(--color-primary-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--font-2xs);
+  color: var(--color-primary-700);
+  font-weight: 600;
+}
+
+.ds-shadow-sample {
+  width: 120px;
+  height: 72px;
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
+.ds-spacing-bar {
+  height: 28px;
+  background: var(--color-primary-100);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  padding-left: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-primary-700);
+  font-weight: 500;
+}
+
+.ds-gradient-swatch {
+  height: 56px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.ds-zindex-bar {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--font-xs);
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primary-500);
+  margin-bottom: var(--space-2);
+}
+
+.ds-overlay-swatch {
+  width: 80px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  border: 1px solid var(--color-border);
+}
+
+.ds-transition-demo {
+  width: 48px;
+  height: 48px;
+  background: var(--color-primary-100);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid var(--color-primary-200);
+}
+
+.ds-transition-demo:hover {
+  background: var(--color-primary-500);
+  border-color: var(--color-primary-500);
+}
+
+/* --- Code block --- */
+.ds-code {
+  background: var(--gray-900);
+  color: #e5e7eb;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--font-xs);
+  line-height: 1.7;
+  overflow-x: auto;
+  margin-bottom: var(--space-4);
+}
+
+.ds-code .comment { color: #6b7280; }
+.ds-code .prop { color: #93c5fd; }
+.ds-code .val { color: #fca5a5; }
+.ds-code .fn { color: #86efac; }
+
+/* --- Decision banner --- */
+.ds-decision {
+  background: linear-gradient(135deg, var(--yellow-50), #FFF7ED);
+  border: 1px solid #FDE68A;
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin-bottom: var(--space-6);
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.ds-decision-icon {
+  font-size: var(--font-xl);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.ds-decision-title {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--font-md);
+  color: var(--gray-800);
+  margin-bottom: var(--space-1);
+}
+
+.ds-decision-text {
+  font-size: var(--font-sm);
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+/* --- Stats row --- */
+.ds-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.ds-stat {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  text-align: center;
+}
+
+.ds-stat-number {
+  font-family: var(--font-numbers);
+  font-size: var(--font-2xl);
+  font-weight: 700;
+  color: var(--color-primary-600);
+  line-height: 1.1;
+}
+
+.ds-stat-number.bad { color: var(--color-error); }
+.ds-stat-number.good { color: var(--color-success); }
+
+.ds-stat-label {
+  font-size: var(--font-2xs);
+  color: var(--color-text-muted);
+  font-weight: 500;
+  margin-top: var(--space-1);
+}
+
+/* --- Comparison --- */
+.ds-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.ds-compare-card {
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  border: 2px solid;
+}
+
+.ds-compare-card.option-blue { border-color: var(--blue-300); background: var(--blue-50); }
+.ds-compare-card.option-indigo { border-color: var(--indigo-300); background: var(--indigo-50); }
+
+.ds-compare-title {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--font-md);
+  margin-bottom: var(--space-3);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .ds-nav { display: none; }
+  .ds-main { margin-left: 0; padding: var(--space-4); }
+  .ds-hero { padding: var(--space-6); }
+  .ds-hero-title { font-size: var(--font-xl); }
+  .ds-compare { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="ds-nav scrollbar-thin">
+  <div class="ds-nav-logo">SynQ</div>
+  <div class="ds-nav-sub">Design System v1</div>
+
+  <div class="ds-nav-section">Foundation</div>
+  <a href="#colors">Colors</a>
+  <a href="#typography">Typography</a>
+  <a href="#spacing">Spacing</a>
+  <a href="#radius">Border Radius</a>
+  <a href="#shadows">Shadows</a>
+  <a href="#gradients">Gradients</a>
+
+  <div class="ds-nav-section">System</div>
+  <a href="#transitions">Transitions</a>
+  <a href="#zindex">Z-Index</a>
+  <a href="#overlays">Overlays</a>
+  <a href="#borders">Borders</a>
+
+  <div class="ds-nav-section">Components</div>
+  <a href="#buttons">Buttons</a>
+  <a href="#inputs">Inputs</a>
+  <a href="#badges">Badges</a>
+  <a href="#cards">Cards</a>
+  <a href="#spinners">Spinners</a>
+  <a href="#toggles">Toggles</a>
+
+  <div class="ds-nav-section">Reference</div>
+  <a href="#tokens-css">CSS Variables</a>
+  <a href="#hierarchy">Component Hierarchy</a>
+  <a href="#audit-stats">Audit Stats</a>
+</nav>
+
+<!-- Main Content -->
+<main class="ds-main">
+
+  <!-- Hero -->
+  <div class="ds-hero">
+    <div class="ds-hero-badge">Atomic Design + Design Tokens (W3C)</div>
+    <h1 class="ds-hero-title">SynQ Design System</h1>
+    <p class="ds-hero-desc">Живая документация: токены, компоненты и правила. Всё, что нужно, чтобы строить SynQ консистентно.</p>
+  </div>
+
+  <!-- Audit Stats -->
+  <section class="ds-section" id="audit-stats">
+    <h2 class="ds-section-title">Текущее состояние</h2>
+    <p class="ds-section-desc">Результаты аудита 191 Vue-компонента. Красные цифры — проблемы, зелёные — цели.</p>
+    <div class="ds-stats">
+      <div class="ds-stat">
+        <div class="ds-stat-number bad">180</div>
+        <div class="ds-stat-label">Хардкод hex → 30 токенов</div>
+      </div>
+      <div class="ds-stat">
+        <div class="ds-stat-number bad">0</div>
+        <div class="ds-stat-label">CSS Variables → 50+</div>
+      </div>
+      <div class="ds-stat">
+        <div class="ds-stat-number bad">369</div>
+        <div class="ds-stat-label">Inline кнопок → Button.vue</div>
+      </div>
+      <div class="ds-stat">
+        <div class="ds-stat-number bad">101</div>
+        <div class="ds-stat-label">!important → 0</div>
+      </div>
+      <div class="ds-stat">
+        <div class="ds-stat-number bad">48</div>
+        <div class="ds-stat-label">Transition вариантов → 3</div>
+      </div>
+      <div class="ds-stat">
+        <div class="ds-stat-number bad">30</div>
+        <div class="ds-stat-label">Border-radius → 5</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ COLORS ═══════════════ -->
+  <section class="ds-section" id="colors">
+    <h2 class="ds-section-title">Colors</h2>
+    <p class="ds-section-desc">Трёхуровневая система: Primitive → Semantic → Component. Primitive — сырые значения, Semantic — назначение, Component — контекст использования.</p>
+
+    <!-- Decision: Blue vs Indigo -->
+    <div class="ds-decision">
+      <div class="ds-decision-icon">⚠️</div>
+      <div>
+        <div class="ds-decision-title">Фаза 0: выбрать акцентный цвет</div>
+        <div class="ds-decision-text">Blue (#3B82F6) используется 86 раз, Indigo (#6366F1) — 46 раз. Нужно выбрать один. Ниже оба варианта для сравнения.</div>
+      </div>
+    </div>
+
+    <div class="ds-compare">
+      <div class="ds-compare-card option-blue">
+        <div class="ds-compare-title" style="color: var(--blue-700);">Option A: Blue</div>
+        <div style="display:flex;gap:8px;margin-bottom:12px;">
+          <div style="width:40px;height:40px;border-radius:8px;background:var(--blue-500);"></div>
+          <div style="width:40px;height:40px;border-radius:8px;background:var(--blue-600);"></div>
+          <div style="width:40px;height:40px;border-radius:8px;background:var(--blue-700);"></div>
+        </div>
+        <button class="btn btn-primary" style="background:var(--blue-500);">Primary Button</button>
+        <div style="margin-top:12px;font-size:12px;color:var(--gray-600);">86× в коде, Tailwind default, нейтральный</div>
+      </div>
+      <div class="ds-compare-card option-indigo">
+        <div class="ds-compare-title" style="color: var(--indigo-700);">Option B: Indigo</div>
+        <div style="display:flex;gap:8px;margin-bottom:12px;">
+          <div style="width:40px;height:40px;border-radius:8px;background:var(--indigo-500);"></div>
+          <div style="width:40px;height:40px;border-radius:8px;background:var(--indigo-600);"></div>
+          <div style="width:40px;height:40px;border-radius:8px;background:var(--indigo-700);"></div>
+        </div>
+        <button class="btn btn-primary" style="background:var(--indigo-500);">Primary Button</button>
+        <div style="margin-top:12px;font-size:12px;color:var(--gray-600);">46× в коде, в Button.vue, более уникальный</div>
+      </div>
+    </div>
+
+    <!-- Primary palette -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Primary (Blue — текущий по умолчанию)</h3>
+      <div class="ds-colors-grid">
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--blue-50);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">50</div><div class="ds-swatch-hex">#EFF6FF</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--blue-100);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">100</div><div class="ds-swatch-hex">#DBEAFE</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--blue-200);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">200</div><div class="ds-swatch-hex">#BFDBFE</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--blue-300);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">300</div><div class="ds-swatch-hex">#93C5FD</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--blue-400);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">400</div><div class="ds-swatch-hex">#60A5FA</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--blue-500);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">500</div><div class="ds-swatch-hex">#3B82F6</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--blue-600);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">600</div><div class="ds-swatch-hex">#2563EB</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--blue-700);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">700</div><div class="ds-swatch-hex">#1D4ED8</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--blue-800);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">800</div><div class="ds-swatch-hex">#1E40AF</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--blue-900);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">900</div><div class="ds-swatch-hex">#1E3A8A</div></div></div>
+      </div>
+    </div>
+
+    <!-- Gray palette -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Gray</h3>
+      <div class="ds-colors-grid">
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--gray-50);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">50</div><div class="ds-swatch-hex">#F9FAFB</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--gray-100);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">100</div><div class="ds-swatch-hex">#F3F4F6</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--gray-200);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">200</div><div class="ds-swatch-hex">#E5E7EB</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--gray-300);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">300</div><div class="ds-swatch-hex">#D1D5DB</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--gray-400);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">400</div><div class="ds-swatch-hex">#9CA3AF</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--gray-500);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">500</div><div class="ds-swatch-hex">#6B7280</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--gray-600);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">600</div><div class="ds-swatch-hex">#4B5563</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--gray-700);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">700</div><div class="ds-swatch-hex">#374151</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--gray-800);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">800</div><div class="ds-swatch-hex">#1F2937</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--gray-900);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">900</div><div class="ds-swatch-hex">#111827</div></div></div>
+      </div>
+    </div>
+
+    <!-- Status colors -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Status</h3>
+      <div class="ds-colors-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--green-500);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">Success</div><div class="ds-swatch-hex">#10B981</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--red-500);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">Error</div><div class="ds-swatch-hex">#EF4444</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--yellow-500);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">Warning</div><div class="ds-swatch-hex">#F59E0B</div></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--blue-500);"></div><div class="ds-swatch-info"><div class="ds-swatch-name">Info</div><div class="ds-swatch-hex">#3B82F6</div></div></div>
+      </div>
+    </div>
+
+    <!-- Semantic tokens -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Semantic Tokens (Level 2)</h3>
+      <div class="ds-semantic-row">
+        <div class="ds-semantic-dot" style="background:var(--color-text);"></div>
+        <div class="ds-semantic-name">--color-text</div>
+        <div class="ds-semantic-value">var(--gray-900)</div>
+        <div class="ds-semantic-usage">Основной текст, заголовки</div>
+      </div>
+      <div class="ds-semantic-row">
+        <div class="ds-semantic-dot" style="background:var(--color-text-secondary);"></div>
+        <div class="ds-semantic-name">--color-text-secondary</div>
+        <div class="ds-semantic-value">var(--gray-500)</div>
+        <div class="ds-semantic-usage">Вторичный текст, подписи</div>
+      </div>
+      <div class="ds-semantic-row">
+        <div class="ds-semantic-dot" style="background:var(--color-text-muted);"></div>
+        <div class="ds-semantic-name">--color-text-muted</div>
+        <div class="ds-semantic-value">var(--gray-400)</div>
+        <div class="ds-semantic-usage">Placeholder, disabled</div>
+      </div>
+      <div class="ds-semantic-row">
+        <div class="ds-semantic-dot" style="background:var(--color-border);border:1px solid var(--gray-300);"></div>
+        <div class="ds-semantic-name">--color-border</div>
+        <div class="ds-semantic-value">var(--gray-200) #E5E7EB</div>
+        <div class="ds-semantic-usage">Единый серый бордер (заменяет 5 разных)</div>
+      </div>
+      <div class="ds-semantic-row">
+        <div class="ds-semantic-dot" style="background:var(--color-bg-subtle);border:1px solid var(--gray-200);"></div>
+        <div class="ds-semantic-name">--color-bg-subtle</div>
+        <div class="ds-semantic-value">var(--gray-50)</div>
+        <div class="ds-semantic-usage">Фон страницы, подложки</div>
+      </div>
+      <div class="ds-semantic-row">
+        <div class="ds-semantic-dot" style="background:var(--color-bg-muted);border:1px solid var(--gray-200);"></div>
+        <div class="ds-semantic-name">--color-bg-muted</div>
+        <div class="ds-semantic-value">var(--gray-100)</div>
+        <div class="ds-semantic-usage">Hover фон, карточки</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ TYPOGRAPHY ═══════════════ -->
+  <section class="ds-section" id="typography">
+    <h2 class="ds-section-title">Typography</h2>
+    <p class="ds-section-desc">Raleway для UI элементов (кнопки, навигация, заголовки), Inter для контентного текста, Radio Canada для цифр. 8 размеров заменяют 29 текущих.</p>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Type Scale</h3>
+
+      <div class="ds-type-sample">
+        <div class="ds-type-meta"><div class="ds-type-meta-name">--text-2xl</div><div class="ds-type-meta-spec">32px / 700 / 1.2</div></div>
+        <div style="font-family:var(--font-ui);font-size:32px;font-weight:700;line-height:1.2;letter-spacing:-0.02em;">Hero Section</div>
+      </div>
+      <div class="ds-type-sample">
+        <div class="ds-type-meta"><div class="ds-type-meta-name">--text-xl</div><div class="ds-type-meta-spec">24px / 700 / 1.2</div></div>
+        <div style="font-family:var(--font-ui);font-size:24px;font-weight:700;line-height:1.2;letter-spacing:-0.01em;">Крупный заголовок</div>
+      </div>
+      <div class="ds-type-sample">
+        <div class="ds-type-meta"><div class="ds-type-meta-name">--text-lg</div><div class="ds-type-meta-spec">18px / 600 / 1.3</div></div>
+        <div style="font-family:var(--font-ui);font-size:18px;font-weight:600;line-height:1.3;">Заголовок страницы</div>
+      </div>
+      <div class="ds-type-sample">
+        <div class="ds-type-meta"><div class="ds-type-meta-name">--text-md</div><div class="ds-type-meta-spec">16px / 600 / 1.4</div></div>
+        <div style="font-family:var(--font-ui);font-size:16px;font-weight:600;line-height:1.4;">Заголовок секции</div>
+      </div>
+      <div class="ds-type-sample">
+        <div class="ds-type-meta"><div class="ds-type-meta-name">--text-base</div><div class="ds-type-meta-spec">14px / 400 / 1.5</div></div>
+        <div style="font-family:var(--font-content);font-size:14px;font-weight:400;line-height:1.5;">Основной текст интерфейса — то, что пользователь читает чаще всего</div>
+      </div>
+      <div class="ds-type-sample">
+        <div class="ds-type-meta"><div class="ds-type-meta-name">--text-sm</div><div class="ds-type-meta-spec">13px / 400 / 1.5</div></div>
+        <div style="font-family:var(--font-content);font-size:13px;font-weight:400;line-height:1.5;color:var(--color-text-secondary);">Вторичный текст, ячейки таблиц, мета-информация</div>
+      </div>
+      <div class="ds-type-sample">
+        <div class="ds-type-meta"><div class="ds-type-meta-name">--text-xs</div><div class="ds-type-meta-spec">12px / 400 / 1.4</div></div>
+        <div style="font-family:var(--font-content);font-size:12px;font-weight:400;line-height:1.4;color:var(--color-text-muted);">Подписи, timestamps, подсказки</div>
+      </div>
+      <div class="ds-type-sample" style="border-bottom:none;">
+        <div class="ds-type-meta"><div class="ds-type-meta-name">--text-2xs</div><div class="ds-type-meta-spec">10px / 500 / 1.4</div></div>
+        <div style="font-family:var(--font-content);font-size:10px;font-weight:500;line-height:1.4;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.04em;">Мелкие лейблы, бейджи</div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Font Families</h3>
+      <div class="ds-preview">
+        <div style="margin-bottom:20px;">
+          <div class="ds-label">Raleway — UI шрифт</div>
+          <div style="font-family:var(--font-ui);font-size:20px;font-weight:600;">Кнопки, навигация, заголовки ABCabc 0123456789</div>
+        </div>
+        <div style="margin-bottom:20px;">
+          <div class="ds-label">Inter — контентный текст</div>
+          <div style="font-family:var(--font-content);font-size:16px;">Длинные тексты, таблицы, описания ABCabc 0123456789</div>
+        </div>
+        <div style="margin-bottom:20px;">
+          <div class="ds-label">Radio Canada — цифры и даты</div>
+          <div style="font-family:var(--font-numbers);font-size:18px;font-weight:500;">$49.99 / мес · 12:30 · 22.02.2026 · 1,234,567</div>
+        </div>
+        <div>
+          <div class="ds-label">Monospace — код</div>
+          <div style="font-family:var(--font-mono);font-size:13px;color:var(--color-text-secondary);">const token = '--color-primary-500';</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SPACING ═══════════════ -->
+  <section class="ds-section" id="spacing">
+    <h2 class="ds-section-title">Spacing</h2>
+    <p class="ds-section-desc">Шкала кратная 4px. Заменяет нестандартные 5px, 6px, 7px, 9px, 10px, 11px, 15px, 30px, 34px.</p>
+
+    <div class="ds-preview">
+      <div class="ds-spacing-bar" style="width:16px;margin-bottom:8px;">4</div>
+      <div class="ds-spacing-bar" style="width:32px;margin-bottom:8px;">8</div>
+      <div class="ds-spacing-bar" style="width:48px;margin-bottom:8px;">12</div>
+      <div class="ds-spacing-bar" style="width:64px;margin-bottom:8px;">16</div>
+      <div class="ds-spacing-bar" style="width:80px;margin-bottom:8px;">20</div>
+      <div class="ds-spacing-bar" style="width:96px;margin-bottom:8px;">24</div>
+      <div class="ds-spacing-bar" style="width:128px;margin-bottom:8px;">32</div>
+      <div class="ds-spacing-bar" style="width:160px;margin-bottom:8px;">40</div>
+      <div class="ds-spacing-bar" style="width:192px;">48</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ BORDER RADIUS ═══════════════ -->
+  <section class="ds-section" id="radius">
+    <h2 class="ds-section-title">Border Radius</h2>
+    <p class="ds-section-desc">5 токенов заменяют 30 текущих вариантов (3px, 6px, 8px, 10px, 11px, 12px, 16px, 20px, 34px...).</p>
+
+    <div class="ds-preview">
+      <div class="ds-preview-row" style="gap:24px;">
+        <div style="text-align:center;">
+          <div class="ds-radius-sample" style="border-radius:var(--radius-sm);">4px</div>
+          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--color-primary-600);">--radius-sm</div>
+          <div style="font-size:10px;color:var(--gray-400);">Badges</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="ds-radius-sample" style="border-radius:var(--radius-md);">8px</div>
+          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--color-primary-600);">--radius-md</div>
+          <div style="font-size:10px;color:var(--gray-400);">Кнопки, инпуты</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="ds-radius-sample" style="border-radius:var(--radius-lg);">12px</div>
+          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--color-primary-600);">--radius-lg</div>
+          <div style="font-size:10px;color:var(--gray-400);">Карточки, модалки</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="ds-radius-sample" style="border-radius:var(--radius-xl);">16px</div>
+          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--color-primary-600);">--radius-xl</div>
+          <div style="font-size:10px;color:var(--gray-400);">Chat bubbles</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="ds-radius-sample" style="border-radius:var(--radius-full);width:48px;height:48px;">∞</div>
+          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--color-primary-600);">--radius-full</div>
+          <div style="font-size:10px;color:var(--gray-400);">Пилюли, аватары</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SHADOWS ═══════════════ -->
+  <section class="ds-section" id="shadows">
+    <h2 class="ds-section-title">Shadows</h2>
+    <p class="ds-section-desc">4 уровня заменяют 37 текущих вариантов.</p>
+
+    <div class="ds-preview">
+      <div class="ds-preview-row" style="gap:24px;">
+        <div style="text-align:center;">
+          <div class="ds-shadow-sample" style="box-shadow:var(--shadow-sm);">sm</div>
+          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--color-primary-600);">--shadow-sm</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="ds-shadow-sample" style="box-shadow:var(--shadow-md);">md</div>
+          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--color-primary-600);">--shadow-md</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="ds-shadow-sample" style="box-shadow:var(--shadow-lg);">lg</div>
+          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--color-primary-600);">--shadow-lg</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="ds-shadow-sample" style="box-shadow:var(--shadow-focus);">focus</div>
+          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--color-primary-600);">--shadow-focus</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ GRADIENTS ═══════════════ -->
+  <section class="ds-section" id="gradients">
+    <h2 class="ds-section-title">Gradients</h2>
+    <p class="ds-section-desc">11 именованных градиентов заменяют 22 хаотичных. Бренд-градиенты — главный визуальный якорь SynQ.</p>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Brand</h3>
+      <div style="display:grid;gap:12px;margin-bottom:24px;">
+        <div>
+          <div class="ds-gradient-swatch" style="height:80px;background:linear-gradient(193deg, #0011FF 0%, #C538CF 33%, #ED5F9F 66%, #FF8000 100%);border-radius:var(--radius-lg);"></div>
+          <div style="margin-top:6px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);">gradient-brand — Hero, CTA, лендинг</div>
+        </div>
+        <div>
+          <div class="ds-gradient-swatch" style="height:64px;background:linear-gradient(200deg, #F2F2F2, #CBF8FB, #DFB1FF, #FF7B3E);"></div>
+          <div style="margin-top:6px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);">gradient-brand-light — Фоны, карточки</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Functional</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
+        <div>
+          <div class="ds-gradient-swatch" style="background:linear-gradient(90deg, #71F391, #67FF79);"></div>
+          <div style="margin-top:6px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);">gradient-green</div>
+        </div>
+        <div>
+          <div class="ds-gradient-swatch" style="background:linear-gradient(90deg, #FCF761, #F1EDAC, #EED728);"></div>
+          <div style="margin-top:6px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);">gradient-yellow</div>
+        </div>
+        <div>
+          <div class="ds-gradient-swatch" style="background:linear-gradient(90deg, #F06B6B, #FFC2C2, #E45858);"></div>
+          <div style="margin-top:6px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);">gradient-red</div>
+        </div>
+        <div>
+          <div class="ds-gradient-swatch" style="background:linear-gradient(135deg, #3b82f6, #2563eb);"></div>
+          <div style="margin-top:6px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);">gradient-blue</div>
+        </div>
+        <div>
+          <div class="ds-gradient-swatch" style="background:linear-gradient(90deg, #F3F4F6, #FFFFFF, #F3F4F6);"></div>
+          <div style="margin-top:6px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);">gradient-gray</div>
+        </div>
+        <div>
+          <div class="ds-gradient-swatch" style="background:linear-gradient(90deg, #456CCD, #87CC70, #5DC589, #4072C9);"></div>
+          <div style="margin-top:6px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);">gradient-rainbow</div>
+        </div>
+        <div>
+          <div class="ds-gradient-swatch" style="background:linear-gradient(135deg, #0011FF, #ED5F9F, #FF8000);"></div>
+          <div style="margin-top:6px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);">gradient-user (аватар)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ TRANSITIONS ═══════════════ -->
+  <section class="ds-section" id="transitions">
+    <h2 class="ds-section-title">Transitions</h2>
+    <p class="ds-section-desc">3 токена заменяют 48 вариантов. Наведите мышь на квадраты для демонстрации.</p>
+
+    <div class="ds-preview">
+      <div class="ds-preview-row" style="gap:24px;">
+        <div style="text-align:center;">
+          <div class="ds-transition-demo" style="transition:all 150ms ease;">
+            <span style="font-family:var(--font-mono);font-size:10px;color:var(--color-primary-600);">150</span>
+          </div>
+          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--color-primary-600);">--transition-fast</div>
+          <div style="font-size:10px;color:var(--gray-400);">Hover, цвет</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="ds-transition-demo" style="transition:all 200ms ease;">
+            <span style="font-family:var(--font-mono);font-size:10px;color:var(--color-primary-600);">200</span>
+          </div>
+          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--color-primary-600);">--transition-normal</div>
+          <div style="font-size:10px;color:var(--gray-400);">Кнопки, инпуты</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="ds-transition-demo" style="transition:all 300ms ease;">
+            <span style="font-family:var(--font-mono);font-size:10px;color:var(--color-primary-600);">300</span>
+          </div>
+          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--color-primary-600);">--transition-slow</div>
+          <div style="font-size:10px;color:var(--gray-400);">Панели, модалки</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ Z-INDEX ═══════════════ -->
+  <section class="ds-section" id="zindex">
+    <h2 class="ds-section-title">Z-Index</h2>
+    <p class="ds-section-desc">6 уровней заменяют хаос из 99999, 9999, 1000, 50, 40, 20, 10.</p>
+
+    <div class="ds-preview">
+      <div class="ds-zindex-bar" style="width:100%;opacity:1;">z-toast: 50 — Тосты, нотификации</div>
+      <div class="ds-zindex-bar" style="width:87%;opacity:0.9;">z-modal: 40 — Модальные окна</div>
+      <div class="ds-zindex-bar" style="width:74%;opacity:0.8;">z-overlay: 30 — Backdrop модалок</div>
+      <div class="ds-zindex-bar" style="width:61%;opacity:0.7;">z-sticky: 20 — Sticky header, sidebar</div>
+      <div class="ds-zindex-bar" style="width:48%;opacity:0.6;">z-dropdown: 10 — Дропдауны, попапы</div>
+      <div class="ds-zindex-bar" style="width:35%;opacity:0.5;">z-base: 1 — Приподнятые элементы</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ OVERLAYS ═══════════════ -->
+  <section class="ds-section" id="overlays">
+    <h2 class="ds-section-title">Overlays</h2>
+    <p class="ds-section-desc">5 уровней прозрачности заменяют 20 текущих значений.</p>
+
+    <div class="ds-preview">
+      <div class="ds-preview-row" style="gap:16px;">
+        <div style="text-align:center;">
+          <div class="ds-overlay-swatch" style="background:rgba(0,0,0,0.05);color:var(--gray-600);text-shadow:none;">0.05</div>
+          <div style="margin-top:6px;font-size:10px;color:var(--gray-500);">subtle</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="ds-overlay-swatch" style="background:rgba(0,0,0,0.1);color:var(--gray-700);text-shadow:none;">0.10</div>
+          <div style="margin-top:6px;font-size:10px;color:var(--gray-500);">light</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="ds-overlay-swatch" style="background:rgba(0,0,0,0.25);">0.25</div>
+          <div style="margin-top:6px;font-size:10px;color:var(--gray-500);">medium</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="ds-overlay-swatch" style="background:rgba(0,0,0,0.5);">0.50</div>
+          <div style="margin-top:6px;font-size:10px;color:var(--gray-500);">backdrop</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="ds-overlay-swatch" style="background:rgba(0,0,0,0.9);">0.90</div>
+          <div style="margin-top:6px;font-size:10px;color:var(--gray-500);">heavy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ BORDERS ═══════════════ -->
+  <section class="ds-section" id="borders">
+    <h2 class="ds-section-title">Borders</h2>
+    <p class="ds-section-desc">5 токенов заменяют 25+ вариантов. Единый серый #E5E7EB вместо пяти разных.</p>
+
+    <div class="ds-preview">
+      <div style="display:grid;gap:12px;">
+        <div style="padding:16px;border:1px solid var(--color-border);border-radius:var(--radius-md);display:flex;align-items:center;gap:16px;">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-primary-600);min-width:140px;">--border-default</span>
+          <span style="font-size:12px;color:var(--gray-500);">1px solid var(--color-gray-200)</span>
+        </div>
+        <div style="padding:16px;border:2px solid var(--color-border);border-radius:var(--radius-md);display:flex;align-items:center;gap:16px;">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-primary-600);min-width:140px;">--border-strong</span>
+          <span style="font-size:12px;color:var(--gray-500);">2px solid var(--color-gray-200)</span>
+        </div>
+        <div style="padding:16px;border:1px solid var(--color-error);border-radius:var(--radius-md);display:flex;align-items:center;gap:16px;">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-primary-600);min-width:140px;">--border-error</span>
+          <span style="font-size:12px;color:var(--gray-500);">1px solid var(--color-error)</span>
+        </div>
+        <div style="padding:16px;border:1px solid var(--color-success);border-radius:var(--radius-md);display:flex;align-items:center;gap:16px;">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-primary-600);min-width:140px;">--border-success</span>
+          <span style="font-size:12px;color:var(--gray-500);">1px solid var(--color-success)</span>
+        </div>
+        <div style="padding:16px;border:1px dashed var(--color-border-strong);border-radius:var(--radius-md);display:flex;align-items:center;gap:16px;">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-primary-600);min-width:140px;">--border-dashed</span>
+          <span style="font-size:12px;color:var(--gray-500);">1px dashed var(--color-gray-300)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ BUTTONS ═══════════════ -->
+  <section class="ds-section" id="buttons">
+    <h2 class="ds-section-title">Buttons</h2>
+    <p class="ds-section-desc">Один Button.vue вместо 50+ CSS-классов и 369 инлайн-реализаций.</p>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Variants</h3>
+      <div class="ds-preview">
+        <div class="ds-preview-row">
+          <button class="btn btn-primary">Primary</button>
+          <button class="btn btn-secondary">Secondary</button>
+          <button class="btn btn-danger">Danger</button>
+          <button class="btn btn-ghost">Ghost</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Sizes</h3>
+      <div class="ds-preview">
+        <div class="ds-preview-row" style="align-items:flex-end;">
+          <button class="btn btn-primary btn-sm">Small</button>
+          <button class="btn btn-primary">Medium</button>
+          <button class="btn btn-primary btn-lg">Large</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">States</h3>
+      <div class="ds-preview">
+        <div class="ds-preview-row">
+          <button class="btn btn-primary">Default</button>
+          <button class="btn btn-primary" style="box-shadow:var(--shadow-focus);">Focused</button>
+          <button class="btn btn-primary" disabled>Disabled</button>
+          <button class="btn btn-primary" style="opacity:0.7;cursor:wait;"><span class="spinner spinner-sm" style="border-color:rgba(255,255,255,0.3);border-top-color:#fff;margin-right:6px;"></span> Loading</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ INPUTS ═══════════════ -->
+  <section class="ds-section" id="inputs">
+    <h2 class="ds-section-title">Inputs</h2>
+    <p class="ds-section-desc">Единый Input.vue с токенами вместо инлайн-стилей в каждом компоненте.</p>
+
+    <div class="ds-preview">
+      <div style="display:grid;gap:16px;max-width:360px;">
+        <div>
+          <div class="ds-label">Default</div>
+          <input class="input" type="text" placeholder="Введите текст...">
+        </div>
+        <div>
+          <div class="ds-label">Focused (кликните)</div>
+          <input class="input" type="text" value="Заполненный инпут">
+        </div>
+        <div>
+          <div class="ds-label">Error</div>
+          <input class="input input-error" type="text" value="Неверное значение">
+          <div style="font-size:12px;color:var(--color-error);margin-top:4px;">Ошибка валидации</div>
+        </div>
+        <div>
+          <div class="ds-label">Disabled</div>
+          <input class="input" type="text" value="Недоступно" disabled style="opacity:0.5;cursor:not-allowed;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ BADGES ═══════════════ -->
+  <section class="ds-section" id="badges">
+    <h2 class="ds-section-title">Badges</h2>
+
+    <div class="ds-preview">
+      <div class="ds-preview-row">
+        <span class="badge badge-primary">Primary</span>
+        <span class="badge badge-success">Онлайн</span>
+        <span class="badge badge-error">Ошибка</span>
+        <span class="badge badge-warning">Ожидание</span>
+        <span class="badge badge-neutral">Черновик</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CARDS ═══════════════ -->
+  <section class="ds-section" id="cards">
+    <h2 class="ds-section-title">Cards</h2>
+    <p class="ds-section-desc">Единый Card компонент с токенами для border-radius, shadow и padding.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">
+      <div class="card">
+        <div style="font-family:var(--font-ui);font-weight:600;font-size:var(--font-md);margin-bottom:8px;">Карточка клиента</div>
+        <div style="font-size:var(--font-sm);color:var(--color-text-secondary);margin-bottom:12px;">Иван Петров · Telegram</div>
+        <span class="badge badge-success">Активный</span>
+      </div>
+      <div class="card" style="box-shadow:var(--shadow-md);">
+        <div style="font-family:var(--font-ui);font-weight:600;font-size:var(--font-md);margin-bottom:8px;">Сделка #1234</div>
+        <div style="font-size:var(--font-sm);color:var(--color-text-secondary);margin-bottom:12px;font-family:var(--font-numbers);">$2,500 · 22.02.2026</div>
+        <span class="badge badge-warning">В работе</span>
+      </div>
+      <div class="card" style="border-color:var(--color-primary-200);background:var(--color-primary-50);">
+        <div style="font-family:var(--font-ui);font-weight:600;font-size:var(--font-md);margin-bottom:8px;color:var(--color-primary-700);">Выделенная</div>
+        <div style="font-size:var(--font-sm);color:var(--color-primary-600);">Карточка с акцентным стилем</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SPINNERS ═══════════════ -->
+  <section class="ds-section" id="spinners">
+    <h2 class="ds-section-title">Spinners</h2>
+    <p class="ds-section-desc">Один Spinner.vue заменяет 33 инлайн-реализации и 16 копий @keyframes spin.</p>
+
+    <div class="ds-preview">
+      <div class="ds-preview-row" style="gap:24px;">
+        <div style="text-align:center;">
+          <div class="spinner spinner-sm"></div>
+          <div style="margin-top:8px;font-size:11px;color:var(--gray-500);">sm (16px)</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="spinner spinner-md"></div>
+          <div style="margin-top:8px;font-size:11px;color:var(--gray-500);">md (24px)</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="spinner spinner-lg"></div>
+          <div style="margin-top:8px;font-size:11px;color:var(--gray-500);">lg (32px)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ TOGGLES ═══════════════ -->
+  <section class="ds-section" id="toggles">
+    <h2 class="ds-section-title">Toggles</h2>
+
+    <div class="ds-preview">
+      <div class="ds-preview-row" style="gap:24px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="toggle-track" onclick="this.classList.toggle('active')"><div class="toggle-thumb"></div></div>
+          <span style="font-size:13px;">Выключен</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="toggle-track active" onclick="this.classList.toggle('active')"><div class="toggle-thumb"></div></div>
+          <span style="font-size:13px;">Включён</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CSS VARIABLES ═══════════════ -->
+  <section class="ds-section" id="tokens-css">
+    <h2 class="ds-section-title">CSS Variables — полный список</h2>
+    <p class="ds-section-desc">Скопируй этот блок в src/assets/styles/tokens.css и подключи в main.ts. Это фундамент Фазы 1.</p>
+
+    <div class="ds-code"><span class="comment">/* ═══ LEVEL 1: PRIMITIVE ═══ */</span>
+:root {
+  <span class="comment">/* Colors */</span>
+  <span class="prop">--blue-500</span>: <span class="val">#3B82F6</span>;
+  <span class="prop">--blue-600</span>: <span class="val">#2563EB</span>;
+  <span class="prop">--gray-50</span>: <span class="val">#F9FAFB</span>;  <span class="prop">--gray-100</span>: <span class="val">#F3F4F6</span>;
+  <span class="prop">--gray-200</span>: <span class="val">#E5E7EB</span>;  <span class="prop">--gray-300</span>: <span class="val">#D1D5DB</span>;
+  <span class="prop">--gray-400</span>: <span class="val">#9CA3AF</span>;  <span class="prop">--gray-500</span>: <span class="val">#6B7280</span>;
+  <span class="prop">--gray-700</span>: <span class="val">#374151</span>;  <span class="prop">--gray-900</span>: <span class="val">#111827</span>;
+
+  <span class="comment">/* Spacing: 4px base scale */</span>
+  <span class="prop">--space-1</span>: <span class="val">4px</span>;  <span class="prop">--space-2</span>: <span class="val">8px</span>;
+  <span class="prop">--space-3</span>: <span class="val">12px</span>; <span class="prop">--space-4</span>: <span class="val">16px</span>;
+  <span class="prop">--space-5</span>: <span class="val">20px</span>; <span class="prop">--space-6</span>: <span class="val">24px</span>;
+  <span class="prop">--space-8</span>: <span class="val">32px</span>; <span class="prop">--space-12</span>: <span class="val">48px</span>;
+
+  <span class="comment">/* Radius */</span>
+  <span class="prop">--radius-4</span>: <span class="val">4px</span>;  <span class="prop">--radius-8</span>: <span class="val">8px</span>;
+  <span class="prop">--radius-12</span>: <span class="val">12px</span>; <span class="prop">--radius-16</span>: <span class="val">16px</span>;
+  <span class="prop">--radius-full</span>: <span class="val">9999px</span>;
+}
+
+<span class="comment">/* ═══ LEVEL 2: SEMANTIC ═══ */</span>
+:root {
+  <span class="prop">--color-primary-500</span>: <span class="fn">var(--blue-500)</span>;
+  <span class="prop">--color-primary-600</span>: <span class="fn">var(--blue-600)</span>;
+  <span class="prop">--color-text</span>: <span class="fn">var(--gray-900)</span>;
+  <span class="prop">--color-text-secondary</span>: <span class="fn">var(--gray-500)</span>;
+  <span class="prop">--color-border</span>: <span class="fn">var(--gray-200)</span>;
+  <span class="prop">--color-bg-subtle</span>: <span class="fn">var(--gray-50)</span>;
+
+  <span class="prop">--shadow-sm</span>: <span class="val">0 1px 2px rgba(0,0,0,0.05)</span>;
+  <span class="prop">--shadow-md</span>: <span class="val">0 4px 6px rgba(0,0,0,0.07)</span>;
+  <span class="prop">--transition-fast</span>: <span class="val">150ms ease</span>;
+  <span class="prop">--transition-normal</span>: <span class="val">200ms ease</span>;
+}
+
+<span class="comment">/* ═══ LEVEL 3: COMPONENT ═══ */</span>
+:root {
+  <span class="prop">--button-bg</span>: <span class="fn">var(--color-primary-500)</span>;
+  <span class="prop">--button-radius</span>: <span class="fn">var(--radius-8)</span>;
+  <span class="prop">--input-border</span>: <span class="fn">var(--color-border)</span>;
+  <span class="prop">--card-shadow</span>: <span class="fn">var(--shadow-sm)</span>;
+}</div>
+  </section>
+
+  <!-- ═══════════════ HIERARCHY ═══════════════ -->
+  <section class="ds-section" id="hierarchy">
+    <h2 class="ds-section-title">Component Hierarchy</h2>
+    <p class="ds-section-desc">Atomic Design → Vue. Каждый уровень строится из предыдущего.</p>
+
+    <table class="ds-token-table">
+      <thead>
+        <tr>
+          <th>Atomic Design</th>
+          <th>SynQ термин</th>
+          <th>Примеры</th>
+          <th>Папка</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Atoms</td>
+          <td><strong>Primitives</strong></td>
+          <td>Button, Input, Badge, Avatar, Icon, Spinner</td>
+          <td class="token-name">components/common/</td>
+        </tr>
+        <tr>
+          <td>Molecules</td>
+          <td><strong>Components</strong></td>
+          <td>SearchInput, Select, ConfirmDialog, EmptyState</td>
+          <td class="token-name">components/common/</td>
+        </tr>
+        <tr>
+          <td>Organisms</td>
+          <td><strong>Patterns</strong></td>
+          <td>Sidebar, ConversationList, PipelineBoard</td>
+          <td class="token-name">components/</td>
+        </tr>
+        <tr>
+          <td>Templates</td>
+          <td><strong>Layouts</strong></td>
+          <td>MainLayout, AuthLayout</td>
+          <td class="token-name">layouts/</td>
+        </tr>
+        <tr>
+          <td>Pages</td>
+          <td><strong>Views</strong></td>
+          <td>Dashboard, Conversations, Integrations, Plans</td>
+          <td class="token-name">views/</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:24px;padding:20px;background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-lg);">
+      <div style="font-family:var(--font-ui);font-weight:700;font-size:var(--font-md);margin-bottom:12px;">Принцип каскада</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <div style="padding:8px 16px;background:var(--color-primary-50);border-radius:var(--radius-md);font-family:var(--font-mono);font-size:12px;color:var(--color-primary-700);font-weight:600;">Tokens</div>
+        <span style="color:var(--gray-400);">→</span>
+        <div style="padding:8px 16px;background:var(--color-primary-100);border-radius:var(--radius-md);font-family:var(--font-mono);font-size:12px;color:var(--color-primary-700);font-weight:600;">Primitives</div>
+        <span style="color:var(--gray-400);">→</span>
+        <div style="padding:8px 16px;background:var(--color-primary-200);border-radius:var(--radius-md);font-family:var(--font-mono);font-size:12px;color:var(--color-primary-700);font-weight:600;">Components</div>
+        <span style="color:var(--gray-400);">→</span>
+        <div style="padding:8px 16px;background:var(--color-primary-300);border-radius:var(--radius-md);font-family:var(--font-mono);font-size:12px;color:var(--color-primary-700);font-weight:600;">Patterns</div>
+        <span style="color:var(--gray-400);">→</span>
+        <div style="padding:8px 16px;background:var(--color-primary-400);border-radius:var(--radius-md);font-family:var(--font-mono);font-size:12px;color:#fff;font-weight:600;">Views</div>
+      </div>
+      <div style="margin-top:12px;font-size:13px;color:var(--color-text-secondary);">Изменение токена на корневом уровне каскадируется через все слои на финальные экраны.</div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+// Smooth scroll for nav links
+document.querySelectorAll('.ds-nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    document.querySelectorAll('.ds-nav a').forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+
+// Highlight active section on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('.ds-nav a').forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+document.querySelectorAll('.ds-section').forEach(s => observer.observe(s));
+
+// Copy hex on swatch click
+document.querySelectorAll('.ds-swatch').forEach(swatch => {
+  swatch.addEventListener('click', () => {
+    const hex = swatch.querySelector('.ds-swatch-hex')?.textContent;
+    if (hex) {
+      navigator.clipboard.writeText(hex).then(() => {
+        const info = swatch.querySelector('.ds-swatch-hex');
+        const orig = info.textContent;
+        info.textContent = 'Скопировано!';
+        info.style.color = 'var(--color-success)';
+        setTimeout(() => { info.textContent = orig; info.style.color = ''; }, 1200);
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>
